@@ -2,47 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cyber Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Admin Dashboard - User Activity</h1>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <p style="color: var(--neon-pink);">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% for username, user in users.items() %}
-            <div class="profile-card">
-                <div class="info">
-                    <h1>{{ user.username }}</h1>
-                    {% if user_activity[user.username] %}
-                        <p><strong>Login Time:</strong> {{ user_activity[user.username]['login_time'] or 'Not logged in yet' }}</p>
-                        <p><strong>Logout Time:</strong> {{ user_activity[user.username]['logout_time'] or 'Still logged in' }}</p>
-                        <p><strong>Students Checked:</strong></p>
-                        {% if user_activity[user.username]['students_checked'] %}
-                            <ul>
-                                {% for check in user_activity[user.username]['students_checked'] %}
-                                    <li>{{ check.name }} - Checked at {{ check.time }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p>No students checked yet.</p>
-                        {% endif %}
-                    {% else %}
-                        <p>No activity recorded yet.</p>
-                    {% endif %}
+        <h1>Admin Dashboard</h1>
+        <h2>User Activity</h2>
+        <div class="student-list">
+            {% for username, activity in user_activity.items() %}
+                <div class="student-card">
+                    <h3>{{ username }}</h3>
+                    <p>Login: {{ activity.login_time }}</p>
+                    <p>Logout: {{ activity.logout_time or 'Active' }}</p>
+                    <p>Students Checked:</p>
+                    {% for check in activity.students_checked %}
+                        <p>{{ check.name }} at {{ check.time }}</p>
+                    {% endfor %}
                 </div>
-            </div>
-        {% endfor %}
-        <form method="POST" action="{{ url_for('clear_activity') }}">
-            <button type="submit" class="floating-back-btn" style="background: rgba(255, 0, 0, 0.9); border-color: #ff0000;">Clear All Activity</button>
+            {% endfor %}
+        </div>
+        <form method="POST" action="/clear_activity">
+            <button type="submit">Clear Activity</button>
         </form>
-        <a href="{{ url_for('logout') }}" class="floating-back-btn">Logout</a>
+        <a href="/logout" class="floating-back-btn">Logout</a>
     </div>
 </body>
 </html>
