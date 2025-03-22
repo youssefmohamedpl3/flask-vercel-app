@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List - Cyber Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="student-list">
             {% for student in students %}
                 <div class="student-card">
-                    <form method="POST" action="{{ url_for('student_detail') }}">
+                    <form method="POST" action="/student">
                         <input type="hidden" name="student_id" value="{{ student.id }}">
                         <input type="hidden" name="token" value="{{ tokens[student.id] }}">
                         <button type="submit">{{ student.name }}</button>
@@ -20,7 +20,7 @@
                 </div>
             {% endfor %}
         </div>
-        <a href="{{ url_for('logout') }}" class="floating-back-btn">Logout</a>
+        <a href="/logout" class="floating-back-btn">Logout</a>
     </div>
 </body>
 </html>
