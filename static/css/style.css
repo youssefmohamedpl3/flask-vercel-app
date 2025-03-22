@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rubik+Glitch&family=Kanit:wght@300;500;800&display=swap');
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --matrix-green: #00ff9d;
+  --cyber-purple: #bc13fe;
+  --hologram-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+  /* Cosmic Neon Theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rubik+Glitch&family=Kanit:wght@300;500;800&display=swap');
 
 :root {
   --neon-blue: #00f3ff;
@@ -8,14 +16,7 @@
   --hologram-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
 }
 
-body {
-  background: radial-gradient(circle at center, #0a0a2e, #000);
-  font-family: 'Kanit', sans-serif;
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
+/* Particle Background */
 body::before {
   content: '';
   position: fixed;
@@ -24,7 +25,9 @@ body::before {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
   animation: particleFlow 20s linear infinite;
 }
 
@@ -33,6 +36,19 @@ body::before {
   100% { transform: rotate(360deg); }
 }
 
+body {
+  background: radial-gradient(circle at center, #0a0a2e, #000);
+  font-family: 'Kanit', sans-serif;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-user-select: none; /* Prevent text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; /* Makes it harder to copy content */
+}
+
+/* Cyber Container Effect */
 .container, .detail-container {
   position: relative;
   max-width: 1400px;
@@ -43,6 +59,7 @@ body::before {
   border: 2px solid var(--neon-blue);
   box-shadow: 0 0 50px rgba(0, 243, 255, 0.2);
   backdrop-filter: blur(15px);
+  transform-style: preserve-3d;
 }
 
 .container::after {
@@ -56,6 +73,7 @@ body::before {
   opacity: 0.4;
 }
 
+/* Holographic Student Cards */
 .student-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -64,17 +82,35 @@ body::before {
 }
 
 .student-card {
+  position: relative;
   background: rgba(0, 0, 0, 0.8);
   padding: 2rem;
   border-radius: 15px;
   border: 1px solid var(--neon-blue);
+  transform-style: preserve-3d;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
+  overflow: hidden;
+}
+
+.student-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+  transition: 0.5s;
 }
 
 .student-card:hover {
   transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
   box-shadow: 0 25px 40px rgba(0, 243, 255, 0.3);
+}
+
+.student-card:hover::before {
+  left: 100%;
 }
 
 .student-card button {
@@ -91,7 +127,6 @@ body::before {
   cursor: pointer;
   width: 100%;
   text-align: left;
-  word-wrap: break-word;
 }
 
 .student-card:hover button {
@@ -99,7 +134,9 @@ body::before {
   text-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
 }
 
+/* Cyberpunk Profile Page */
 .profile-card {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
@@ -107,6 +144,21 @@ body::before {
   background: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--neon-pink);
   border-radius: 25px;
+  transform-style: preserve-3d;
+}
+
+.profile-card::after {
+  content: 'CYBER PROFILE';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: var(--neon-pink);
+  font-family: 'Rubik Glitch', cursive;
+  font-size: 1.2rem;
+  padding: 0 1rem;
+  letter-spacing: 3px;
 }
 
 .info h1 {
@@ -115,7 +167,6 @@ body::before {
   font-size: 3rem;
   margin-bottom: 2rem;
   text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
-  word-wrap: break-word;
 }
 
 .info p {
@@ -124,14 +175,8 @@ body::before {
   margin: 1rem 0;
   background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1));
   border-left: 3px solid var(--neon-pink);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
   transition: all 0.4s;
-  word-wrap: break-word;
-}
-
-.info p a {
-  color: var(--matrix-green);
-  text-decoration: none;
-  word-wrap: break-word;
 }
 
 .info p:hover {
@@ -139,6 +184,7 @@ body::before {
   background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.1));
 }
 
+/* Neon Button Matrix Effect */
 .floating-back-btn {
   position: fixed;
   bottom: 40px;
@@ -151,7 +197,19 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 3px;
   transition: all 0.4s;
+  overflow: hidden;
   text-decoration: none;
+}
+
+.floating-back-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.3), transparent);
+  transition: 0.5s;
 }
 
 .floating-back-btn:hover {
@@ -159,44 +217,46 @@ body::before {
   transform: scale(1.1);
 }
 
+.floating-back-btn:hover::before {
+  left: 100%;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .container, .detail-container {
     margin: 1rem;
     padding: 1.5rem;
     max-width: 100%;
   }
+
   .student-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column on mobile */
     gap: 1rem;
   }
+
   .student-card {
     padding: 1.5rem;
   }
+
   .student-card button {
     font-size: 1.2rem;
-    white-space: normal;
-    overflow-wrap: break-word;
   }
+
   .profile-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack columns on mobile */
     padding: 1.5rem;
     gap: 1.5rem;
   }
+
   .info h1 {
     font-size: 2rem;
-    white-space: normal;
-    overflow-wrap: break-word;
   }
+
   .info p {
     font-size: 1rem;
     padding: 0.8rem;
-    white-space: normal;
-    overflow-wrap: break-word;
   }
-  .info p a {
-    white-space: normal;
-    overflow-wrap: break-word;
-  }
+
   .floating-back-btn {
     bottom: 20px;
     right: 20px;
@@ -209,9 +269,11 @@ body::before {
   .info h1 {
     font-size: 1.5rem;
   }
+
   .student-card button {
     font-size: 1rem;
   }
+
   .floating-back-btn {
     padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
