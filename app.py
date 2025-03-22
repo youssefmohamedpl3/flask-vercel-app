@@ -29,7 +29,10 @@ class User(UserMixin):
 # Users
 users = {
     'admin': User('1', 'Youssef Mohamed Ahmed', 'c29FLBV593', 'all'),
-    'MMM': User('2', 'Mahmoud Mohamed Mahmoud', 'aynal18', [3, 2])
+    'YMA' : User('3', 'Youssef Mohamed Ahmed', 'c29FLBV593', 'all'),
+    'MMM': User('2', 'Mahmoud Mohamed Mahmoud', 'R9T5B2L8', [3, 2,6,5]),
+    'SWA' : User("4", 'Sandy Wassim Abdullah' , '3K7M4N1Q' , [1,4])
+    'KHZ' : User("4", 'Karam Hazem Zaki' , 'W6X2Y9Z4' , [3, 2,6,5])
 }
 
 # Student data
@@ -38,7 +41,8 @@ students = [
     {'id': 3, 'name': 'Mahmoud Mohamed Mahmoud', 'phone': '01090968876', 'address': 'Awsim', 'instagram': 'https://www.instagram.com/mahmoud_______2011/', 'facebook': 'https://www.facebook.com/profile.php?id=100050581157620', 'dob': '2011-08-28', 'car': 'Hyundai Elantra 2020'},
     {'id': 5, 'name': 'Malek Hany Abdelal', 'phone': '01122206125', 'address': 'Faisal Mariouteya', 'instagram': 'https://www.instagram.com/itz_____malek/', 'facebook': 'https://www.facebook.com/profile.php?id=100055797635744', 'dob': '2011-10-11', 'car': ''},
     {'id': 4, 'name': 'Layan Wael Mohamed', 'phone': '01554918118', 'address': 'Faisal Mariouteya', 'instagram': '', 'facebook': 'https://www.facebook.com/lian.wael.14', 'dob': '2011-08-01', 'car': ''},
-    {'id': 1, 'name': 'Sandy Wassim Abdullah', 'phone': '01030064939', 'address': 'Egypt, Cairo, Sheikh Zayed, 8th district', 'instagram': 'https://www.instagram.com/sandy_wasiem12/', 'facebook': 'https://www.facebook.com/profile.php?id=61550241764159&mibextid=ZbWKwL', 'dob': '2011-07-01', 'car': ''}
+    {'id': 1, 'name': 'Sandy Wassim Abdullah', 'phone': '01030064939', 'address': 'Sheikh Zayed, 8th district', 'instagram': 'https://www.instagram.com/sandy_wasiem12/', 'facebook': 'https://www.facebook.com/profile.php?id=61550241764159&mibextid=ZbWKwL', 'dob': '2011-07-01', 'car': ''}
+    {'id': 6, 'name': 'Youssef Mohamed Ahmed Sayed Ali', 'phone': '01155201219', 'address': 'Sheikh Zayed, 9th district, 1st Neighbourhoud, villa 103, appartment 7', 'instagram': 'https://www.instagram.com/joe__is__here/', 'https://www.facebook.com/profile.php?id=61553419564295', 'dob': '2011-05-28', 'car': 'Mitushibi Eclipse Cross 2024'}
 ]
 
 # Store user activity globally
